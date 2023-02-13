@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Users</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html">Front Page</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="users.html">List Users</a></li>
+          <li><a href="products.html">List Products</a></li>
+          <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Users</h1>
+      <div id="notifications-container"></div>
+      <div id="modify-user"></div>
+      <div id="users-container"></div>
+
+      <p class="text-align-center">
+        <a href="index.html">Front Page</a> | <a href="register.html">Register</a>
+      </p>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2020</p>
+    </footer>
+    <template id="user-template">
+      <div class="item-row">
+        <h3 class="user-name">Admin</h3>
+        <p class="user-email">admin@email.com</p>
+        <p class="user-role">admin</p>
+        <button class="modify-button">Modify</button>
+        <button class="delete-button">Delete</button>
+      </div>
+    </template>
+    <template id="form-template">
+      <form id="edit-user-form" method="POST">
+        <h2 class="text-align-center">Modify user {User Name}</h2>
+        <div class="form-group">
+          <label for="id">Id</label>
+          <input
+            name="_id"
+            type="text"
+            class="form-control"
+            id="id-input"
+            value=""
+            disabled
+            required>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name-input"
+            value=""
+            disabled
+            required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="email-input"
+            value=""
+            disabled
+            required>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select name="role" id="role-input">
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="second-column">
+            <button type="submit" id="update-button">Update</button>
+          </div>
+        </div>
+      </form>
+    </template>
+    <script src="js/utils.js"></script>
+    <script src="js/adminUsers.js"></script>
+  </body>
+</html>

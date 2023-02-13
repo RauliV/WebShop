@@ -1,0 +1,212 @@
+
+> server@1.0.0 test
+> mocha --require test/setup.test.js --ignore 'test/8.4/**/*.js' --ignore 'test/8.5/**/*.js' --ignore 'test/8.6/**/*.js' --ignore 'test/9.2/**/*.js' --ignore 'test/9.6/**/*.js' --ignore 'test/10.2/**/*.js'
+
+
+
+  Auth
+    getCurrentUser()
+      ✓ should return null when "Authorization" header is missing
+      ✓ should return null when "Authorization" header is empty
+      ✓ should return null when "Authorization" type is not "Basic"
+      ✓ should return null when user does not exist
+      ✓ should return null when password is incorrect (88ms)
+      ✓ should return user object when credentials are correct (89ms)
+
+  Products Controller
+    getAllProducts()
+      1) should respond with JSON
+
+  Users Controller
+    getAllUsers()
+      2) should respond with JSON
+    viewUser()
+      3) should respond with "404 Not Found" if user with given userId does not exist
+      4) should respond with JSON
+    updateUser()
+      5) should respond with "404 Not Found" if user with given userId does not exist
+      6) should update only the role of the user with userId
+      7) should respond with "400 Bad Request" when userId === currentUser.id
+      8) should respond with "400 Bad Request" when role is missing
+      9) should respond with "400 Bad Request" when role is not valid
+    deleteUser()
+      10) should respond with "404 Not Found" if user with given userId does not exist
+      11) should respond with "400 Bad Request" when userId === currentUser.id
+      12) should delete existing user with userId
+      13) should return the deleted user
+    registerUser()
+      14) should respond with "400 Bad Request" when email is not valid
+      15) should respond with "400 Bad Request" when email is already in use
+      16) should respond with "400 Bad Request" when name is missing
+      17) should respond with "400 Bad Request" when password is missing
+      18) should respond with "400 Bad Request" when password is too short
+      19) should respond with "201 Created" when registration is successful
+      20) should set user role to "customer" when registration is successful
+      21) should return the created user as JSON
+
+  getDbUrl()
+    ✓ must return default database URL if DBURL is not defined
+    ✓ must return DBURL defined in environment variable
+
+  .env
+    ✓ must define DBURL
+
+  User Model
+    Schema validation
+      ✓ must define "name" (87ms)
+      ✓ must trim spaces from "name" (87ms)
+      ✓ must not allow "name" to have only spaces (87ms)
+      ✓ must require "name" to be at least one character long (87ms)
+      ✓ must not allow "name" to be longer than 50 characters (87ms)
+      ✓ must require "email" (89ms)
+      ✓ must require "email" to be valid email address (87ms)
+      ✓ must require "password"
+      ✓ must not allow empty "password"
+      ✓ must require password to be at least 10 characters long (87ms)
+      ✓ must hash password (88ms)
+      ✓ must hash "password" when set to a new value (175ms)
+      ✓ has an optional "role" (88ms)
+      ✓ must set default value of "role" to customer (88ms)
+      ✓ must allow any known "role" (173ms)
+      ✓ must trim "role" (86ms)
+      ✓ must cast "role" to lowercase (88ms)
+      ✓ must not allow unknown "role" (86ms)
+    checkPassword()
+      ✓ must detect correct "password" (172ms)
+      ✓ must detect a false "password" (172ms)
+
+  Routes
+    handleRequest()
+      General Server Functionality
+        ✓ should respond with "404 Not Found" to an unknown URI
+        ✓ should respond with HTML file when "/register.html" is requested
+        ✓ should respond with "405 Method Not Allowed" to an unsupported method
+        ✓ should respond with "204 No Content" to an OPTIONS request
+        ✓ should respond with correct Allow headers to an OPTIONS request
+      Registration: POST /api/register
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON
+        ✓ should respond with "400 Bad Request" when request body is not valid JSON
+        ✓ should respond with "400 Bad Request" when email is missing (90ms)
+        ✓ should respond with "400 Bad Request" when email is already in use
+        ✓ should respond with "400 Bad Request" when name is missing (89ms)
+        ✓ should respond with "400 Bad Request" when password is missing
+        ✓ should respond with "201 Created" when registration is successful (93ms)
+        ✓ should set user role to "customer" when registration is successful (92ms)
+      Viewing all users: GET /api/users
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is empty
+        ✓ should respond with Basic Auth Challenge when Authorization header is not properly encoded
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (88ms)
+        ✓ should respond with "403 Forbidden" when customer credentials are received (88ms)
+        ✓ should respond with JSON when admin credentials are received (90ms)
+      Viewing a single user: GET /api/users/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (90ms)
+        ✓ should respond with "403 Forbidden" when customer credentials are received (89ms)
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (90ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (88ms)
+        ✓ should respond with JSON when admin credentials are received (90ms)
+        ✓ should respond with status code 404 when user does not exist (89ms)
+      Updating users: PUT /api/users/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (90ms)
+        ✓ should respond with "403 Forbidden" when customer credentials are received (91ms)
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (93ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (92ms)
+        ✓ should update role when admin credentials are received (95ms)
+        ✓ should only update role (91ms)
+        ✓ should respond with "400 Bad Request" when role is missing (89ms)
+        ✓ should respond with "400 Bad Request" when role is not valid (90ms)
+        ✓ should respond with status code 404 when user does not exist (93ms)
+      Deleting users: DELETE /api/users/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (91ms)
+        ✓ should respond with "403 Forbidden" when customer credentials are received (91ms)
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (90ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (92ms)
+638110a08cda3d494182cc61
+{ n: 1, ok: 1, deletedCount: 1 }
+        ✓ should delete user when admin credentials are received (95ms)
+638110a18cda3d494182ccc7
+{ n: 1, ok: 1, deletedCount: 1 }
+        ✓ should return the deleted user (95ms)
+        ✓ should respond with status code 404 when user does not exist (89ms)
+      Viewing all products: GET /api/products
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (89ms)
+        ✓ should respond with Basic Auth Challenge when Authorization header is empty
+        ✓ should respond with Basic Auth Challenge when Authorization header is not properly encoded
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON
+        ✓ should respond with JSON when admin credentials are received (92ms)
+        ✓ should respond with JSON when customer credentials are received (91ms)
+        ✓ should respond with correct data when admin credentials are received (92ms)
+        ✓ should respond with correct data when customer credentials are received (91ms)
+      Viewing a single product: GET /api/products/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (89ms)
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (89ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (89ms)
+        22) should respond with JSON when admin credentials are received
+        23) should respond with JSON when customer credentials are received
+        ✓ should respond with status code 404 when product does not exist (90ms)
+      Updating products: PUT /api/products/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (89ms)
+        24) should respond with "403 Forbidden" when customer credentials are received
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (92ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (89ms)
+        25) should update product when admin credentials are received
+        26) should allow partial update of product properties
+        27) should respond with "400 Bad Request" when name is empty
+        28) should respond with "400 Bad Request" when price is not a number
+        29) should respond with "400 Bad Request" when price is 0 (zero)
+        30) should respond with "400 Bad Request" when price is negative
+        ✓ should respond with status code 404 when product does not exist (91ms)
+      Deleting products: DELETE /api/products/{id}
+        ✓ should respond with "401 Unauthorized" when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization header is missing
+        ✓ should respond with Basic Auth Challenge when Authorization credentials are incorrect (90ms)
+        31) should respond with "403 Forbidden" when customer credentials are received
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing (90ms)
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON (91ms)
+        32) should delete product when admin credentials are received
+        33) should return the deleted user
+        ✓ should respond with status code 404 when user does not exist (90ms)
+      Create a new product: POST /api/products
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON
+        34) should respond with "401 Unauthorized" when Authorization header is missing
+        35) should respond with Basic Auth Challenge when Authorization header is missing
+        36) should respond with Basic Auth Challenge when Authorization credentials are incorrect
+        37) should respond with "403 Forbidden" when customer credentials are received
+        38) should respond with "400 Bad Request" when request body is not valid JSON
+        39) should respond with "400 Bad Request" when name is missing
+        40) should respond with "400 Bad Request" when price is missing
+        41) should respond with "201 Created" when product creation is successful
+      Viewing all orders: GET /api/orders
+        42) should respond with "401 Unauthorized" when Authorization header is missing
+        43) should respond with Basic Auth Challenge when Authorization header is missing
+        44) should respond with Basic Auth Challenge when Authorization credentials are incorrect
+        45) should respond with Basic Auth Challenge when Authorization header is empty
+        46) should respond with Basic Auth Challenge when Authorization header is not properly encoded
+        ✓ should respond with "406 Not Acceptable" when Accept header is missing
+        ✓ should respond with "406 Not Acceptable" when client does not accept JSON
+        47) should respond with JSON when admin credentials are received
+        48) should respond with JSON when customer credentials are received
+        49) should respond with correct data when admin credentials are received
+        50) should respond with correct data when customer credentials are received
+      Viewing a single order: GET /api/orders/{id}
+        51) should respond with "401 Unauthorized" when Authorization header is missing
+        52) should respond with Basic Auth Challenge when Authorization header is missing
+        53) should respond with Basic Auth Challenge when Authorization credentials are incorrect

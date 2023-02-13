@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Register</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html">Front Page</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="users.html">List Users</a></li>
+          <li><a href="products.html">List Products</a></li>
+          <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="notifications-container"></div>
+      <form id="register-form" class="form" method="POST">
+        <h2 class="text-align-center">Register</h2>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            id="name"
+            placeholder="John Doe"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="email"
+            placeholder="user@example.com"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="password"
+            placeholder="password (at least 10 characters)"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="passwordConfirmation">Password confirmation</label>
+          <input
+            type="password"
+            name="passwordConfirmation"
+            class="form-control"
+            id="passwordConfirmation"
+            placeholder="password confirmation"
+            minlength="1"
+            required>
+        </div>
+        <div class="form-group">
+          <div class="second-column">
+            <button type="submit" id="btnRegister">Register</button>
+          </div>
+        </div>
+      </form>
+      <p class="text-align-center">
+        <a href="index.html">Front Page</a> | <a href="users.html">List Users</a>
+      </p>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2020</p>
+    </footer>
+    <script src="js/utils.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

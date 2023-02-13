@@ -1,0 +1,48 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "coverage": "nyc --reporter=lcov --reporter=html --reporter=json mocha --require test/setup.test.js --ignore 'test/8.4/**/*.js' --ignore 'test/8.5/**/*.js' --ignore 'test/8.6/**/*.js' --ignore 'test/9.2/**/*.js' --ignore 'test/9.6/**/*.js' --ignore 'test/10.2/**/*.js' --ignore 'test/models/env.test.js'",
+    "nodemon": "nodemon index.js",
+    "reset-db": "node ./setup/reset-db.js",
+    "create-orders": "node ./setup/create-orders.js",
+    "eslint": "eslint .",
+    "fp-lint": "eslint --no-eslintrc --config ./.fplintrc.json --no-inline-config --ignore-path ./.fplintignore .",
+    "jsdoc-lint": "npx eslint --no-eslintrc --config ./.jsdoclintrc.json --no-inline-config --ignore-path ./.jsdoclintignore -o jsdoc_report.html -f html .",
+    "test-8.4": "mocha  --timeout 10000 --recursive test/8.4",
+    "test-8.5": "mocha --exit --timeout 10000 --recursive test/8.5",
+    "test-8.6": "mocha --exit --timeout 10000 --recursive test/8.6",
+    "test-9.2": "mocha --exit --timeout 10000 --recursive test/9.2",
+    "test-9.4": "mocha --exit --timeout 10000 test/9.6/models/db.test.js test/9.6/models/env.test.js",
+    "test-9.5": "mocha --exit --timeout 10000 --recursive test/9.6/models",
+    "test-9.6": "mocha --require test/9.6/setup.test.js --exit --timeout 10000 --recursive test/9.6",
+    "test-10.2": "mocha --require test/10.2/setup.test.js --exit --timeout 10000 --recursive test/10.2",
+    "test": "mocha --require test/setup.test.js --ignore 'test/8.4/**/*.js' --ignore 'test/8.5/**/*.js' --ignore 'test/8.6/**/*.js' --ignore 'test/9.2/**/*.js' --ignore 'test/9.6/**/*.js' --ignore 'test/10.2/**/*.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axe-puppeteer": "^1.1.1",
+    "c8": "^7.3.5",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-subset": "^1.6.0",
+    "eslint": "^7.12.1",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-jsdoc": "^30.7.8",
+    "mocha": "^8.1.3",
+    "node-mocks-http": "^1.9.0",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "puppeteer": "^5.3.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.13.15"
+  }
+}

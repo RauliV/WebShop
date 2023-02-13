@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        padding: 1rem;
+      }
+
+      aside nav {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+      }
+    </style>
+    <title>WebDev 1 - Programming - API for group project work</title>
+  </head>
+  <body class="container-fluid row">
+    <aside class="col-3">
+      <nav>
+        <ul class="nav flex-column">
+          <li class="nav-item bg-dark"><a class="nav-link" href="#top">API Summary</a></li>
+          <li class="nav-item bg-info"><a class="nav-link text-white" href="#api-Admins">API Methods - Admins</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-productsGet"><span
+                class="badge badge-primary">GET</span> /api/products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-productsPost"><span
+                class="badge badge-success">POST</span> /api/products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-productsProductIdGet"><span
+                class="badge badge-primary">GET</span> /api/products/{productId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-productsProductIdPut"><span
+                class="badge badge-warning">PUT</span> /api/products/{productId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-productsProductIdDelete"><span
+                class="badge badge-danger">DELETE</span> /api/products/{productId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-usersGet"><span
+                class="badge badge-primary">GET</span> /api/users</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-usersUserIdGet"><span
+                class="badge badge-primary">GET</span> /api/users/{userId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-usersUserIdPut"><span
+                class="badge badge-warning">PUT</span> /api/users/{userId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-usersUserIdDelete"><span
+                class="badge badge-danger">DELETE</span> /api/users/{userId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-ordersGet"><span
+                class="badge badge-primary">GET</span> /api/orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Admins-ordersOrderIdGet"><span
+                class="badge badge-primary">GET</span> /api/orders/{orderId}</a></li>
+          <li class="nav-item bg-info"><a class="nav-link text-white" href="#api-Customers">API Methods - Customers</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#api-Customers-productsGet"><span
+                class="badge badge-primary">GET</span> /api/products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Customers-productsProductIdGet"><span
+                class="badge badge-primary">GET</span> /api/products/{productId}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Customers-ordersGet"><span
+                class="badge badge-primary">GET</span> /api/orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Customers-ordersPost"><span
+                class="badge badge-success">POST</span> /api/orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Customers-ordersOrderIdGet"><span
+                class="badge badge-primary">GET</span> /api/orders/{orderId}</a></li>
+          <li class="nav-item bg-info"><a class="nav-link text-white" href="#api-Guests">API Methods - Guests</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Guests-registerPost"><span
+                class="badge badge-success">POST</span> /api/register</a></li>
+          <li class="nav-item bg-info"><a class="nav-link text-white" href="#api-Schemas">Schemas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-Product">Product</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-Order">Order</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-OrderedItem">OrderedItem</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-User">User</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-UserRole">UserRole</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api-Schema-Error">Error</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="col-9">
+      <h1 id="top" class="px-1">WebDev 1 - API for Group Project Work</h1>
+
+      <section class="my-5" id="api-Admins">
+        <h2 class="p-1">API Methods - Admins</h2>
+        <p class="lead">Operations available to administrator users</p>
+        <h3 id="api-Admins-productsGet" class="p-1"><span class="badge badge-primary">GET</span> /api/products</h3>
+        <p class="lead">Get all products</p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11">Array[<a href="#api-Schema-Product">Product</a>] <span class="text-muted">search results
+              matching criteria</span></dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">[
+  {
+    "_id": "9874fadf76ecc98732cdfac7",
+    "name" : "Red 2*4 building block",
+    "price" : 1.15,
+    "image" : "http://example.com/aeiou",
+    "description" : "Classic Danish-style red 2*4 plastic building block"
+  },
+  {
+    "_id": "8bbd8603af35cdd73e387266",
+    "name": "English Dictionary",
+    "price": 33.95,
+    "image" : "http://images.com/oiuweyr",
+    "description": "Encyclopedic dictionary of the English language"
+  }
+]
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-productsPost" class="p-1"><span class="badge badge-success">POST</span> /api/products</h3>
+        <p class="lead">Adds a new Product. <mark>Notice: <code>_id</code> is auto-generated by the server, do NOT add
+            <code>_id</code> to the
+            request body.</mark></p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p><a href="#api-Schema-Product">Product</a> <span class="text-muted">Inventory item to add. </span></p>
+        <h4>Example Request</h4>
+        <pre><code class="json">{
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "image" : "http://example.com/aeiou",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">201</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Product">Product</a> <span class="text-muted">product
+              created</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "2398d576bcaa672382ff2acf",
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "image" : "http://example.com/aeiou",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-productsProductIdGet" class="p-1"><span class="badge badge-primary">GET</span>
+          /api/products/{productId}</h3>
+        <p class="lead">Get a single product's information</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">productId</dt>
+          <dd class="col-sm-11">ID of the product to get</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Product">Product</a> <span class="text-muted">item found</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">Product with the given ID not found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "2398d576bcaa672382ff2acf",
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "image" : "http://example.com/aeiou",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-productsProductIdPut" class="p-1"><span class="badge badge-warning">PUT</span>
+          /api/products/{productId}</h3>
+        <p class="lead">Updates a product. <mark>Notice: <code>_id</code> is included in the URL, do NOT add
+            <code>_id</code> to this request body.</mark></p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">productId</dt>
+          <dd class="col-sm-11">ID of the product to be updated</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p><a href="#api-Schema-Product">Product</a> <span class="text-muted">Product data that needs updating (not
+            necessarily all fields)</span></p>
+        <h4>Example Request</h4>
+        <pre><code class="json">{
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Product">Product</a> <span class="text-muted">modified
+              product</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">Product with the given ID not found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "2398d576bcaa672382ff2acf",
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "image" : "http://example.com/aeiou",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-productsProductIdDelete" class="p-1"><span class="badge badge-danger">DELETE</span>
+          /api/products/{productId}</h3>
+        <p class="lead">Deletes a product</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">productId</dt>
+          <dd class="col-sm-11">ID of the product to delete</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Product">Product</a> <span class="text-muted">deleted
+              product</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">Product with the given ID not found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "2398d576bcaa672382ff2acf",
+  "price" : 1.15,
+  "name" : "Red 2*4 building block",
+  "image" : "http://example.com/aeiou",
+  "description" : "Classic Danish-style red 2*4 plastic building block"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-usersGet" class="p-1"><span class="badge badge-primary">GET</span> /api/users</h3>
+        <p class="lead">Get all users</p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11">Array[<a href="#api-Schema-User">User</a>] <span class="text-muted">collection of all
+              users</span></dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">[
+  {
+    "_id" : "f398d576bcaf672382ff2ac6",
+    "password" : "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "role" : "customer",
+    "name" : "Emmet Brickowski",
+    "email" : "emmet.brickowski@google.com"
+  },
+  {
+    "_id" : "f398d576bcaf672382ff2ac7",
+    "password" : "$2a$10$U9fo4bPd1ckIl2i0sQoMye7kZAgcl7p9j2ldHxa368LJZdL42gfD6",
+    "role" : "admin",
+    "name" : "James Bond",
+    "email" : "james.bond@mi6.uk"
+  }
+]
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-usersUserIdGet" class="p-1"><span class="badge badge-primary">GET</span>
+          /api/users/{userId}</h3>
+        <p class="lead">Get a single user's information</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">userId</dt>
+          <dd class="col-sm-11">ID of the user to get</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-User">User</a> found</dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">User with the given ID not found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+    "_id" : "f398d576bcaf672382ff2ac6",
+    "password" : "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "role" : "customer",
+    "name" : "Emmet Brickowski",
+    "email" : "emmet.brickowski@google.com"
+  }
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-usersUserIdPut" class="p-1"><span class="badge badge-warning">PUT</span>
+          /api/users/{userId}</h3>
+        <p class="lead">Updates a user's role. <mark>Notice: a user CANNOT update his/her own role</mark></p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">userId</dt>
+          <dd class="col-sm-11">ID of the user to update</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p><a href="#api-Schema-UserRole">UserRole</a></p>
+        <h4>Example Request</h4>
+        <pre><code class="json">{
+  "role" : "customer"
+}
+        </code></pre>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-User">User</a> <span class="text-muted">modified user</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">No user specified by userId found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id" : "f398d576bcaf672382ff2ac6",
+  "password" : "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+  "role" : "customer",
+  "name" : "Emmet Brickowski",
+  "email" : "emmet.brickowski@google.com"
+}
+      </code></pre>
+        <hr>
+        <h3 id="api-Admins-usersUserIdDelete" class="p-1"><span class="badge badge-danger">DELETE</span>
+          /api/users/{userId}</h3>
+        <p class="lead">Delete a user. <mark>Notice: a user CANNOT delete himself/herself</mark></p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">userId</dt>
+          <dd class="col-sm-11">ID of the user to delete</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-User">User</a> <span class="text-muted">user specified by userId
+              was deleted</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">No user specified by userId found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id" : "f398d576bcaf672382ff2ac6",
+  "password" : "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+  "role" : "customer",
+  "name" : "Emmet Brickowski",
+  "email" : "emmet.brickowski@google.com"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-ordersGet" class="p-1"><span class="badge badge-primary">GET</span> /api/orders</h3>
+        <p class="lead">Get all appropriate orders. For admins return a collection of all orders in the system. For a
+          customer return a collection of this user's OWN orders.</p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11">Array[<a href="#api-Schema-Order">Order</a>] <span class="text-muted">For admins return
+              a collection of all orders in the system. For a customer return a collection of this user's OWN
+              orders.</span></dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">[
+  {
+    "_id": "1a98984faee67983ceaf9831",
+    "customerId": "ad83fe984303cc5498aaff92",
+    "items": [
+      {
+        "_id": "33fafadf25ecc98b32cdfddd",
+        "product": {
+          "_id": "9874fadf76ecc98732cdfac7",
+          "name": "Candy Bar",
+          "price": 1.15,
+          "description": "Chocolate candy bar with hazelnuts"
+        },
+        "quantity": 12
+      },
+      {
+        "_id": "45fafadf25ecc66b3acdfdde",
+        "product": {
+          "_id": "8bbd8603af35cdd73e387266",
+          "name": "English Dictionary",
+          "price": 33.95,
+          "description": "Encyclopedic dictionary of the English language"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "_id": "1a98984faee67983ceaf9832",
+    "customerId": "ad83fe984303cc5498aaff93",
+    "items: [
+      {
+        "_id": "33fafadf25ecc98b32cdfddd",
+        "product": {
+          "_id": "98bcbbaf57632f21adf12301",
+          "name": "Lego Racing Car",
+          "price": 27.5,
+          "description": "Lego racing car (Green)"
+        },
+        "quantity": 2
+      },
+      {
+        "_id": "225fafadf25ec766b3acdfddf",
+        "product": {
+          "_id": "2398d576bcaa672382ff2acf",
+          "name": "Playing Cards",
+          "price": 19.0,
+          "description": "Beautiful plastic playing cards"
+        },
+        "quantity": 1
+      }
+    ]
+  }
+]
+        </code></pre>
+        <hr>
+        <h3 id="api-Admins-ordersOrderIdGet" class="p-1"><span class="badge badge-primary">GET</span>
+          /api/orders/{orderId}</h3>
+        <p class="lead">Get information about a single order. For admins return the order in the system. For a customer
+          return the order if it is their OWN order.</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">orderId</dt>
+          <dd class="col-sm-11">ID of the order to get</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Order">Order</a> <span class="text-muted">returns the order with
+              the orderId</span></dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">No order specified by orderId found, or a Customer user tried to access someone else's
+            order</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "1a98984faee67983ceaf9832",
+  "customerId": "ad83fe984303cc5498aaff93",
+  "items": [
+    {
+      "_id": "33fafadf25ecc98b32cdfddd",
+      "product": {
+        "_id": "98bcbbaf57632f21adf12301",
+        "name": "Lego Racing Car",
+        "price": 27.5,
+        "description": "Lego racing car (Green)"
+      },
+      "quantity": 2
+    },
+    {
+      "_id": "11fafadf25ec098b32cdfda9",
+      "product": {
+        "_id": "2398d576bcaa672382ff2acf",
+        "name": "Playing Cards",
+        "price": 19.0,
+        "description": "Beautiful plastic playing cards"
+      },
+      "quantity": 1
+    }
+  ]
+}
+      </code></pre>
+      </section>
+
+      <section class="my-5" id="api-Customers">
+        <h2 class="p-1">API Methods - Customers</h2>
+        <p class="lead">Operations available to registered customers</p>
+        <h3 id="api-Customers-productsGet" class="p-1"><span class="badge badge-primary">GET</span> /api/products</h3>
+        <p class="lead">Get all products</p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11">Array[<a href="#api-Schema-Product">Product</a>] <span class="text-muted">search results
+              matching criteria</span></dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">[
+  {
+    "_id": "9874fadf76ecc98732cdfac7",
+    "name" : "Red 2*4 building block",
+    "price" : 1.15,
+    "image" : "http://example.com/aeiou",
+    "description" : "Classic Danish-style red 2*4 plastic building block"
+  },
+  {
+    "_id": "8bbd8603af35cdd73e387266",
+    "name": "English Dictionary",
+    "price": 33.95,
+    "image" : "http://images.com/oiuweyr",
+    "description": "Encyclopedic dictionary of the English language"
+  }
+]
+        </code></pre>
+        <hr>
+        <h3 id="api-Customers-productsProductIdGet" class="p-1"><span class="badge badge-primary">GET</span>
+          /api/products/{productId}</h3>
+        <p class="lead">Get a single product's information</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">productId</dt>
+          <dd class="col-sm-11">ID of the product to get</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Product">Product</a> <span class="text-muted">item found</span>
+          </dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">Product with the given ID not found</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "8bbd8603af35cdd73e387266",
+  "name": "English Dictionary",
+  "price": 33.95,
+  "image" : "http://images.com/oiuweyr",
+  "description": "Encyclopedic dictionary of the English language"
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Customers-ordersGet" class="p-1"><span class="badge badge-primary">GET</span> /api/orders</h3>
+        <p class="lead">Get all appropriate orders. For admins return a collection of all orders in the system. For a
+          customer return a collection of this user's OWN orders.</p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11">Array[<a href="#api-Schema-Order">Order</a>] <span class="text-muted">For admins return
+              a collection of all orders in the system. For a customer return a collection of this user's OWN
+              orders.</span></dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">[
+  {
+    "_id": "1a98984faee67983ceaf9831",
+    "customerId": "ad83fe984303cc5498aaff93",
+    "items": [
+      {
+        "_id": "45fafadf25ecc66b3acdfdde",
+        "product": {
+          "_id": "9874fadf76ecc98732cdfac7",
+          "name": "Candy Bar",
+          "price": 1.15,
+          "description": "Chocolate candy bar with hazelnuts"
+        },
+        "quantity": 12
+      },
+      {
+        "_id": "a10afadf25ecc66b37bd023f",
+        "product": {
+          "_id": "8bbd8603af35cdd73e387266",
+          "name": "English Dictionary",
+          "price": 33.95,
+          "description": "Encyclopedic dictionary of the English language"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "_id": "1a98984faee67983ceaf9832",
+    "customerId": "ad83fe984303cc5498aaff93",
+    "items": [
+      {
+        "_id": "56fd0adf25ecc66b3acdfd06",
+        "product": {
+          "_id": "98bcbbaf57632f21adf12301",
+          "name": "Lego Racing Car",
+          "price": 27.5,
+          "description": "Lego racing car (Green)"
+        },
+        "quantity": 2
+      },
+      {
+        "_id": "4555bcca87ecc26b3acdfdd4",
+        "product": {
+          "_id": "2398d576bcaa672382ff2acf",
+          "name": "Playing Cards",
+          "price": 19.0,
+          "description": "Beautiful plastic playing cards"
+        },
+        "quantity": 1
+      }
+    ]
+  }
+]
+        </code></pre>
+        <hr>
+        <h3 id="api-Customers-ordersPost" class="p-1"><span class="badge badge-success">POST</span> /api/orders</h3>
+        <p class="lead">
+          Adds a new order. <mark>Notice: <code>_id</code> for the actual <strong>order and each order item</strong>
+          should be auto-generated by the server, do NOT add <code>_id</code> to this request body
+          <strong>except for each product</strong>. Also <code>customerId</code> is NOT part of the request and it
+          is automatically set to the id of the current user.</mark></p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p><a href="#api-Schema-Order">Order</a></p>
+        <h4>Example Request</h4>
+        <pre><code class="json">{
+  "items": [
+    {
+      "product": {
+        "_id": "98bcbbaf57632f21adf12301",
+        "name": "Lego Racing Car",
+        "price": 27.5,
+        "description": "Lego racing car (Green)"
+      },
+      "quantity": 2
+    },
+    {
+      "product": {
+        "_id": "2398d576bcaa672382ff2acf",
+        "name": "Playing Cards",
+        "price": 19.0,
+        "description": "Beautiful plastic playing cards"
+      },
+      "quantity": 1
+    }
+  ]
+}
+        </code></pre>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">201</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Order">Order</a> <span class="text-muted">new order's
+              information</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "1a98984faee67983ceaf9832",
+  "customerId": "ad83fe984303cc5498aaff93",
+  "items": [
+    {
+      "_id": "45fafadf25ecc66b3acdfdde",
+      "product": {
+        "_id": "98bcbbaf57632f21adf12301",
+        "name": "Lego Racing Car",
+        "price": 27.5,
+        "description": "Lego racing car (Green)"
+      },
+      "quantity": 2
+    },
+    {
+      "_id": "cc66b3acdfdde45fafadf25e",
+      "product": {
+        "_id": "2398d576bcaa672382ff2acf",
+        "name": "Playing Cards",
+        "price": 19.0,
+        "description": "Beautiful plastic playing cards"
+      },
+      "quantity": 1
+    }
+  ]
+}
+        </code></pre>
+        <hr>
+        <h3 id="api-Customers-ordersOrderIdGet" class="p-1"><span class="badge badge-primary">GET</span>
+          /api/orders/{orderId}</h3>
+        <p class="lead">Get information about a single order. For admins return the order in the system. For a customer
+          return the order if it is their OWN order.</p>
+        <h4>Path Parameters</h4>
+        <dl class="row">
+          <dt class="col-sm-1">orderId</dt>
+          <dd class="col-sm-11">ID of the order to get</dd>
+        </dl>
+        <h4>Request Body</h4>
+        <p>Empty</p>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">200</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Order">Order</a> <span class="text-muted">returns the order with
+              the orderId</span></dd>
+          <dt class="col-sm-1">404</dt>
+          <dd class="col-sm-11">No order specified by orderId found, or a Customer user tried to access someone else's
+            order</dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id": "1a98984faee67983ceaf9832",
+  "customerId": "ad83fe984303cc5498aaff93",
+  "items": [
+    {
+      "_id": "25ecc645fafadf6b3acdfdde",
+      "product": {
+        "_id": "98bcbbaf57632f21adf12301",
+        "name": "Lego Racing Car",
+        "price": 27.5,
+        "description": "Lego racing car (Green)"
+      },
+      "quantity": 2
+    },
+    {
+      "_id": "3acdfdde45fafadf25ecc66b",
+      "product": {
+        "_id": "2398d576bcaa672382ff2acf",
+        "name": "Playing Cards",
+        "price": 19.0,
+        "description": "Beautiful plastic playing cards"
+      },
+      "quantity": 1
+    }
+  ]
+}
+        </code></pre>
+      </section>
+
+      <section class="my-5" id="api-Guests">
+        <h2 class="p-1">API Methods - Guests</h2>
+        <p class="lead">Operations that do not require logging in</p>
+        <h3 id="api-Guests-registerPost" class="p-1"><span class="badge badge-success">POST</span> /api/register</h3>
+        <p class="lead">Register a new user. <mark>Notice: <code>_id</code> is auto-generated by the server, do NOT add
+            <code>_id</code> to this
+            request body. All registered users will have their role forced to <em>customer</em> by the server</mark></p>
+        <h4>Path Parameters</h4>
+        <p>None</p>
+        <h4>Request Body</h4>
+        <p><a href="#api-Schema-User">User</a></p>
+        <h4>Example Request</h4>
+        <pre><code class="json">{
+  "name" : "Emmet Brickowski",
+  "email" : "emmet.brickowski@google.com",
+  "password" : "ZiOl3@8u9jskjed#76saMf=43sdfas"
+}
+        </code></pre>
+        <h4>Responses</h4>
+        <dl class="row">
+          <dt class="col-sm-1">201</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-User">User</a> <span class="text-muted">created user</span></dd>
+          <dt class="col-sm-1">400</dt>
+          <dd class="col-sm-11"><a href="#api-Schema-Error">Error</a> <span class="text-muted">error message(s)</span>
+          </dd>
+        </dl>
+        <h4>Example Response</h4>
+        <p class="text-monospace">Content-Type: application/json</p>
+        <pre><code class="json">{
+  "_id" : "f398d576bcaf672382ff2ac6",
+  "name" : "Emmet Brickowski",
+  "email" : "emmet.brickowski@google.com",
+  "password" : "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+  "role" : "customer"
+}
+      </code></pre>
+      </section>
+
+      <section class="my-5" id="api-Schemas">
+        <h2 class="p-1">Schemas</h2>
+        <p class="lead">Schemas for different data objects.</p>
+        <h3 id="api-Schema-Product">Product</h3>
+        <dl class="row">
+          <dt class="col-sm-2">_id</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">mongo object ID</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">f398d576bcaf672382ff2ac6</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">name (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">Red 2*4 building block</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">price (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">number</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">float</dd>
+              <dt class="col-sm-2">description</dt>
+              <dd class="col-sm-10">
+                price of one product in Euros, without the Euro sign (€). Euros and cents are in the
+                same float, with cents coming after the decimal point</dd>
+              <dt class="col-sm-2">minimum</dt>
+              <dd class="col-sm-10">&gt; 0</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">1.15</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">image</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">description</dt>
+              <dd class="col-sm-10">
+                Adding product images to the Web store API and pages is a Level 2 development grader
+                substitute</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">uri</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">description</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">Classic Danish-style red 2*4 plastic building block</dd>
+            </dl>
+          </dd>
+        </dl>
+        <hr>
+        <h3 id="api-Schema-Order">Order</h3>
+        <dl class="row">
+          <dt class="col-sm-2">_id</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">mongo object ID</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">f398d576bcaf672382ff2ac6</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">customerId (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">mongo object ID</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">f398d576bcaf672382ff2ac6</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">items (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">array</dd>
+              <dt class="col-sm-2">minimum length</dt>
+              <dd class="col-sm-10">1</dd>
+              <dt class="col-sm-2">items</dt>
+              <dd class="col-sm-10">Array[OrderedItem]</dd>
+              <dt class="col-sm-2">description</dt>
+              <dd class="col-sm-10">
+                Array of order items. Each item must have a COPY of the product information (no image)
+                and the amount of products ordered</dd>
+            </dl>
+          </dd>
+        </dl>
+        <hr>
+        <h3 id="api-Schema-OrderedItem">OrderedItem</h3>
+        <p class="lead">Internal schema for products inside Order</p>
+        <dl class="row">
+          <dt class="col-sm-2">_id</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">mongo object ID</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">f398d576bcaf672382ff2ac6</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">product (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-3">_id (<strong>required</strong>)</dt>
+              <dd class="col-sm-9">
+                <dl class="row">
+                  <dt class="col-sm-4">type</dt>
+                  <dd class="col-sm-8">string</dd>
+                  <dt class="col-sm-4">description</dt>
+                  <dd class="col-sm-8">the ID of the ordered product <mark>NOT auto-generated</mark></dd>
+                  <dt class="col-sm-4">format</dt>
+                  <dd class="col-sm-8">mongo object ID</dd>
+                  <dt class="col-sm-4">example</dt>
+                  <dd class="col-sm-8">f398d576bcaf672382ff2ac6</dd>
+                </dl>
+              </dd>
+              <dt class="col-sm-3">name (<strong>required</strong>)</dt>
+              <dd class="col-sm-9">
+                <dl class="row">
+                  <dt class="col-sm-4">type</dt>
+                  <dd class="col-sm-8">string</dd>
+                  <dt class="col-sm-4">example</dt>
+                  <dd class="col-sm-8">Red 2*4 building block</dd>
+                </dl>
+              </dd>
+              <dt class="col-sm-3">price (<strong>required</strong>)</dt>
+              <dd class="col-sm-9">
+                <dl class="row">
+                  <dt class="col-sm-4">type</dt>
+                  <dd class="col-sm-8">number</dd>
+                  <dt class="col-sm-4">format</dt>
+                  <dd class="col-sm-8">float</dd>
+                  <dt class="col-sm-4">description</dt>
+                  <dd class="col-sm-8">
+                    price of one product in Euros, without the Euro sign (€). Euros and cents are in
+                    the same float, with cents coming after the decimal point</dd>
+                  <dt class="col-sm-4">minimum</dt>
+                  <dd class="col-sm-8">&gt; 0</dd>
+                  <dt class="col-sm-4">example</dt>
+                  <dd class="col-sm-8">1.15</dd>
+                </dl>
+              </dd>
+              <dt class="col-sm-3">description</dt>
+              <dd class="col-sm-9">
+                <dl class="row">
+                  <dt class="col-sm-4">type</dt>
+                  <dd class="col-sm-8">string</dd>
+                  <dt class="col-sm-4">example</dt>
+                  <dd class="col-sm-8">Classic Danish-style red 2*4 plastic building block</dd>
+                </dl>
+              </dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">quantity (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">integer</dd>
+              <dt class="col-sm-2">minimum</dt>
+              <dd class="col-sm-10">1</dd>
+            </dl>
+          </dd>
+        </dl>
+        <hr>
+        <h3 id="api-Schema-User">User</h3>
+        <dl class="row">
+          <dt class="col-sm-2">_id</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">mongo object ID</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">f398d576bcaf672382ff2ac6</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">name (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">minimum length</dt>
+              <dd class="col-sm-10">1</dd>
+              <dt class="col-sm-2">maximum length</dt>
+              <dd class="col-sm-10">50</dd>
+              <dt class="col-sm-2">example</dt>
+              <dd class="col-sm-10">Emmet Brickowski</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">email (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">email</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">password (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">minimum length</dt>
+              <dd class="col-sm-10">10</dd>
+              <dt class="col-sm-2">format</dt>
+              <dd class="col-sm-10">password</dd>
+            </dl>
+          </dd>
+          <dt class="col-sm-2">role</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">default</dt>
+              <dd class="col-sm-10">customer</dd>
+              <dt class="col-sm-2">enum</dt>
+              <dd class="col-sm-10">admin,customer</dd>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+
+      <section id="api-JSON">
+        <h2>JSON Schemas</h2>
+        <p class="lead">
+          These schemas describe communication between client and server and
+          are not meant to represent actual database objects.
+        </p>
+        <h3 id="api-Schema-UserRole">UserRole</h3>
+        <dl class="row">
+          <dt class="col-sm-2">role (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string</dd>
+              <dt class="col-sm-2">enum</dt>
+              <dd class="col-sm-10">admin,customer</dd>
+            </dl>
+          </dd>
+        </dl>
+        <hr>
+        <h3 id="api-Schema-Error">Error</h3>
+        <dl class="row">
+          <dt class="col-sm-2">error (<strong>required</strong>)</dt>
+          <dd class="col-sm-10">
+            <dl class="row">
+              <dt class="col-sm-2">type</dt>
+              <dd class="col-sm-10">string,Array[string]</dd>
+              <dt class="col-sm-2">description</dt>
+              <dd class="col-sm-10">Error message or array of messages</dd>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>

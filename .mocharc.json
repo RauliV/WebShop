@@ -1,0 +1,8 @@
+{
+  "diff": true,
+  "extension": ["js"],
+  "timeout": 10000,
+  "ui": "bdd",
+  "exit": true,
+  "recursive": true
+}

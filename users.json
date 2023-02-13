@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "s7y6ctl4v",
+    "name": "Admin",
+    "email": "admin@email.com",
+    "password": "1234567890",
+    "role": "admin"
+  },
+  {
+    "_id": "s7ygctl5v",
+    "name": "Customer",
+    "email": "customer@email.com",
+    "password": "0987654321",
+    "role": "customer"
+  },
+  {
+    "_id": "9vbpap1or",
+    "name": "Admin2",
+    "email": "admin2@email.com",
+    "password": "fu164vlkon",
+    "role": "admin"
+  },
+  {
+    "_id": "46qbd0rhs",
+    "name": "Customer2",
+    "email": "customer2@email.com",
+    "password": "4edv7e0lbd",
+    "role": "customer"
+  },
+  {
+    "_id": "wn9b3bep1",
+    "name": "Admin3",
+    "email": "admin3@email.com",
+    "password": "36753q4cxy",
+    "role": "admin"
+  },
+  {
+    "_id": "9pp3b42ke",
+    "name": "Customer3",
+    "email": "customer3@email.com",
+    "password": "6wyksfgwag",
+    "role": "customer"
+  },
+  {
+    "_id": "fjc892epi",
+    "name": "Admin4",
+    "email": "admin4@email.com",
+    "password": "5r015b4wwk",
+    "role": "admin"
+  },
+  {
+    "_id": "c7xm9ykr9",
+    "name": "Customer4",
+    "email": "customer4@email.com",
+    "password": "17i7vx83hp",
+    "role": "customer"
+  },
+  {
+    "_id": "zs8bkhixy",
+    "name": "Admin5",
+    "email": "admin5@email.com",
+    "password": "2gtiesu913",
+    "role": "admin"
+  },
+  {
+    "_id": "ta84ub0bp",
+    "name": "Customer5",
+    "email": "customer5@email.com",
+    "password": "daoj85ux1u",
+    "role": "customer"
+  }
+]

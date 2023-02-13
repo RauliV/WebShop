@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "plugins": ["fp"],
+  "noInlineConfig": true,
+  "rules": {
+    "fp/no-loops": "error"
+  }
+}

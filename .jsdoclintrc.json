@@ -1,0 +1,25 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:jsdoc/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "plugins": [
+        "jsdoc"
+    ],
+    "rules":{
+        // maybe your other rules...
+        "jsdoc/require-param-description": "error",
+        "jsdoc/check-types": "error",
+        "jsdoc/require-returns-description": "error"
+      }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Cart</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html">Front Page</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="users.html">List Users</a></li>
+          <li><a href="products.html">List Products</a></li>
+          <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Cart</h1>
+      <div id="notifications-container"></div>
+      <div id="cart-container"></div>
+      <button class="btn btn-primary" id="place-order-button">Place order</button>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2020 diipadaa etc etc.</p>
+    </footer>
+    <template id="cart-item-template">
+      <div class="item-row">
+        <h3 class="product-name">Name</h3>
+        <p class="product-price">Price</p>
+        <p class="product-amount">Amount</p>
+        <button class="cart-minus-plus-button">
+          +
+        </button>
+        <button class="cart-minus-plus-button">
+          -
+        </button>
+      </div>
+    </template>
+    <script src="js/utils.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
+</html>
